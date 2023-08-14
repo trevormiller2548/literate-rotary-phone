@@ -1,13 +1,15 @@
+//this is the api key for the weather app
 var apiKey = "0b0900da3e3ace0a6e0aa07ac1bb9cd6";
 var weatherInput = document.getElementById("get-weather");
 
+//this is the function that will run when the search button is clicked
 document.getElementById("run-search").addEventListener("click", function () {
     var city = weatherInput.value.trim();
     if (city !== "") {
         fetchWeatherData(city);
     }
 });
-
+//this is the function that will run when the enter key is pressed
 function fetchWeatherData(city) {
     var currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     var fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
@@ -25,7 +27,7 @@ function fetchWeatherData(city) {
         .then(data => displayForecast(data))
         .catch(error => console.error("Error fetching forecast:", error));
 }
-
+//this is the function that will display the current weather
 function displayCurrentWeather(data) {
     var tempF = (data.main.temp - 273.15) * 1.80 + 32;
     var temp = tempF.toFixed(2);
@@ -35,7 +37,7 @@ function displayCurrentWeather(data) {
     document.querySelector(".humidity").textContent = `Humidity: ${data.main.humidity}`;
     document.querySelector(".temp").textContent = `Temperature (F): ${temp}`;
 }
-
+//this is the function that will display the forecast
 function displayForecast(data) {
     var forecastContainer = document.querySelector(".forecast-container");
     forecastContainer.innerHTML = ""; // Clear previous data
@@ -60,7 +62,7 @@ function displayForecast(data) {
         forecastContainer.appendChild(forecastCard);
     }
 }
-
+//this is the function that will save the city to local storage
 function saveToLocalStorage(city) {
     var recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
     if (!recentSearches.includes(city)) {
@@ -72,7 +74,7 @@ function saveToLocalStorage(city) {
     }
     displayRecentSearches(recentSearches);
 }
-
+//this is the function that will display the recent searches
 function displayRecentSearches(recentSearches) {
     var recentSearchesList = document.querySelector(".recent-searches");
     recentSearchesList.innerHTML = "";
@@ -88,7 +90,7 @@ function displayRecentSearches(recentSearches) {
         recentSearchesList.appendChild(listItem);
     });
 }
-
+//this is the function that will initialize the recent searches
 function initRecentSearches() {
     var recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
     displayRecentSearches(recentSearches);
