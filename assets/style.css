@@ -15,7 +15,7 @@ body {
     bottom: 0;
     left: 0;
     padding: 48px 0 0;
-    width: 240px; /* Adjust width as needed */
+    width: 240px;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     z-index: 100;
     overflow-y: auto;
@@ -23,7 +23,7 @@ body {
 
 [role="main"] {
     padding-top: 48px;
-    margin-left: 240px; /* Adjust margin as needed */
+    margin-left: 240px;
 }
 
 .sidebar-sticky {
@@ -33,7 +33,6 @@ body {
     padding-top: .5rem;
     overflow-y: auto;
 }
-
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
     .sidebar-sticky {
